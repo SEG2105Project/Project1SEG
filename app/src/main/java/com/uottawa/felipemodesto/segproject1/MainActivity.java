@@ -1,7 +1,14 @@
 package com.uottawa.felipemodesto.segproject1;
 
-public class MainActivity {
-    // comment
-    // ted comment
-    // Jonathan comment
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 }
