@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354567277247",
+    "project_id": "segproject-bf0b6",
+    "storage_bucket": "segproject-bf0b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354567277247:android:2a677552ffbb7905aad40a",
+        "android_client_info": {
+          "package_name": "com.uottawa.felipemodesto.segproject1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354567277247-l26ku08fb6roar9bb96ui04lmk2ppl9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBITI3g9wKhJJNr8Sp1gt8R2geKWkjmsJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354567277247-l26ku08fb6roar9bb96ui04lmk2ppl9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
