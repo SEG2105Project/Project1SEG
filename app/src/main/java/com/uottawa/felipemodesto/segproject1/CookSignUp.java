@@ -1,6 +1,7 @@
 package com.uottawa.felipemodesto.segproject1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -99,6 +101,23 @@ public class CookSignUp extends AppCompatActivity{
         });
 
 
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resutltCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resutltCode, data);
+
+        if(requestCode == 1){
+
+            try{
+                Uri uri = data.getData();
+                btn2.setText("Image Uploaded");
+            }
+            catch (Exception e){
+                btn2.setText("Image not Uploaded, try again");
+            }
+        }
 
     }
 
