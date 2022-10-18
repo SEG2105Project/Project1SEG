@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.TextUtils;
@@ -54,7 +55,7 @@ public class CookSignUp extends AppCompatActivity{
 
     Button buttonCookSignUp;
 
-    List<Client> clients;
+    List<Cook> cooks;
     DatabaseReference databaseCook;
 
     Button btn2;
@@ -66,12 +67,12 @@ public class CookSignUp extends AppCompatActivity{
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_cooksignup);
 //
-        editTextFirstName2 = (EditText) findViewById(R.id.editTextLastName2);
+        editTextFirstName2 = (EditText) findViewById(R.id.editTextFirstName2);
         editTextLastName2 = (EditText) findViewById(R.id.editTextLastName2);
-        editTextEmail2 = (EditText) findViewById(R.id.editTextFirstName2);
-        editTextPassword2 = (EditText) findViewById(R.id.editTextLastName2);
-        editTextAddress2 = (EditText) findViewById(R.id.editTextFirstName2);
-        editTextDescription = (EditText) findViewById(R.id.editTextLastName2);
+        editTextEmail2 = (EditText) findViewById(R.id.editTextEmail2);
+        editTextPassword2 = (EditText) findViewById(R.id.editTextPassword2);
+        editTextAddress2 = (EditText) findViewById(R.id.editTextAddress2);
+        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
         //editTextVoidCheque = (EditText) findViewById(R.id.editTextVoidCheque);
         buttonCookSignUp = (Button) findViewById(R.id.buttonCookSignUp);
 
@@ -87,8 +88,8 @@ public class CookSignUp extends AppCompatActivity{
             }
         });
 
-        clients = new ArrayList<>();
-        databaseCook = FirebaseDatabase.getInstance().getReference("Cooks");
+        cooks = new ArrayList<>();
+        databaseCook = FirebaseDatabase.getInstance().getReference("cooks");
         //adding an onclicklistener to button
         buttonCookSignUp.setOnClickListener(new View.OnClickListener() {
 
@@ -144,6 +145,8 @@ public class CookSignUp extends AppCompatActivity{
             editTextDescription.setText("");
 
             Toast.makeText(this, "Sign up Successful", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
         }
         else {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_LONG).show();

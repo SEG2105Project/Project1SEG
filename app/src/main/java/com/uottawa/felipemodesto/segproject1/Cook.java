@@ -23,6 +23,7 @@ public class Cook {
         this.description = description;
         this.voidCheque = voidCheque;
     }
+    public Cook(){};
     public Cook(String id, String firstName, String lastName, String email, String password, String Address, String description, String voidCheque) {
 
         if ( firstName == null || lastName == null || email == null || password == null || Address == null || description == null || voidCheque == null )

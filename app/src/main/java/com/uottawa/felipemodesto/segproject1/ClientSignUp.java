@@ -1,5 +1,6 @@
 package com.uottawa.felipemodesto.segproject1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -110,10 +111,13 @@ public class ClientSignUp extends Activity{
             editTextCreditCard.setText("");
 
             Toast.makeText(this, "Sign up Successful", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
         }
         else {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_LONG).show();
         }
 
     }
+
 }
