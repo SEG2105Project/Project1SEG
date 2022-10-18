@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Home extends Activity {
-
-    @Override
+    DatabaseReference databaseTest;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -18,8 +23,6 @@ public class Home extends Activity {
             case R.id.loginID:
                 loginClick(v);
                 break;
-        }
-        switch (v.getId()) {
             case R.id.signUpID:
                 signUpClick(v);
                 break;
@@ -30,8 +33,10 @@ public class Home extends Activity {
         Intent i = new Intent(this, Login.class);
         startActivity(i);
     }
-    public void signUpClick (View v){
+
+    public void signUpClick (View v) {
         Intent i = new Intent(this, Type.class);
         startActivity(i);
     }
+
 }

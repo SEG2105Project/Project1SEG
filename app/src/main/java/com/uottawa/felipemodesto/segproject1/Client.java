@@ -18,17 +18,33 @@ import java.util.List;
 
 
 public class Client {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String Address;
-    private String creditCardNumber;
-    public Client( String name, String artist, String album ) {
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String password;
+    public String Address;
+    public String creditCardNumber;
+    public String id;
+    public Client( String firstName, String lastName, String email, String password, String Address, String creditCardNumber) {
 
         if ( firstName == null || lastName == null || email == null || password == null || Address == null || creditCardNumber == null)
             throw new IllegalArgumentException( "null value" );
 
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.Address = Address;
+        this.creditCardNumber = creditCardNumber;
+    }
+    public Client() {
+    }
+    public Client(String id, String firstName, String lastName, String email, String password, String Address, String creditCardNumber) {
+
+        if ( firstName == null || lastName == null || email == null || password == null || Address == null || creditCardNumber == null)
+            throw new IllegalArgumentException( "null value" );
+
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
