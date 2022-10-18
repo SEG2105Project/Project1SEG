@@ -1,10 +1,12 @@
 package com.uottawa.felipemodesto.segproject1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +55,10 @@ public class CookSignUp extends AppCompatActivity{
     List<Client> clients;
     DatabaseReference databaseCook;
 
+    Button btn2;
+    ImageView imageView;
+    int SELECT_IMAGE_CODE=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,17 +73,33 @@ public class CookSignUp extends AppCompatActivity{
         //editTextVoidCheque = (EditText) findViewById(R.id.editTextVoidCheque);
         buttonCookSignUp = (Button) findViewById(R.id.buttonCookSignUp);
 
+        btn2 = findViewById(R.id.voidbtn);
+        btn2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Title"), SELECT_IMAGE_CODE);
+
+            }
+        });
 
         clients = new ArrayList<>();
         databaseCook = FirebaseDatabase.getInstance().getReference("Cooks");
         //adding an onclicklistener to button
         buttonCookSignUp.setOnClickListener(new View.OnClickListener() {
 
+
+
             @Override
             public void onClick(View view) {
                 addCook();
             }
         });
+
+
+
     }
 
     private void addCook() {
