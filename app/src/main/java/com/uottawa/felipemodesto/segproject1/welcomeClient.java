@@ -3,7 +3,6 @@ package com.uottawa.felipemodesto.segproject1;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 public class welcomeClient extends Activity{
@@ -15,7 +14,7 @@ public class welcomeClient extends Activity{
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.clientLogOffClick:
+            case R.id.clientLogOffID:
                 clientLogOffClick(v);
                 break;
         }
