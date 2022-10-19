@@ -12,4 +12,17 @@ public class welcomeClient extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcomeclient);
     }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.clientLogOffClick:
+                clientLogOffClick(v);
+                break;
+        }
+    }
+
+    public void clientLogOffClick (View v) {
+        Intent i = new Intent(this, Home.class);
+        startActivity(i);
+    }
 }

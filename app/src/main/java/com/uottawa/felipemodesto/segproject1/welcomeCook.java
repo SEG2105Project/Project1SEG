@@ -12,4 +12,17 @@ public class welcomeCook extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcomecook);
     }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.cookLogOffID:
+                cookLogOffClick(v);
+                break;
+        }
+    }
+
+    public void cookLogOffClick (View v) {
+        Intent i = new Intent(this, Home.class);
+        startActivity(i);
+    }
 }
