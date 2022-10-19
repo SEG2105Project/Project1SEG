@@ -61,7 +61,7 @@ public class CookSignUp extends AppCompatActivity{
     Button btn2;
     ImageView imageView;
     int SELECT_IMAGE_CODE=1;
-    boolean valid = false;
+    boolean voidChequeUploaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class CookSignUp extends AppCompatActivity{
             try{
                 Uri uri = data.getData();
                 btn2.setText("Image Uploaded");
-                valid = true;
+                voidChequeUploaded = true;
             }
             catch (Exception e){
                 btn2.setText("Image not Uploaded, try again");
@@ -129,7 +129,7 @@ public class CookSignUp extends AppCompatActivity{
         String address = editTextAddress2.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(description) && valid == true){
+        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(description) && voidChequeUploaded == true){
             String id = databaseCook.push().getKey();
             String voidCheque ="test";
             Cook cook = new Cook(id, firstName, lastName, email, password, address, description, voidCheque);
@@ -146,6 +146,9 @@ public class CookSignUp extends AppCompatActivity{
             Toast.makeText(this, "Sign up Successful", Toast.LENGTH_LONG).show();
             Intent i = new Intent(this, Login.class);
             startActivity(i);
+        }
+        else if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(description) && voidChequeUploaded == false){
+            Toast.makeText(this, "Please Upload a Void Cheque", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_LONG).show();
