@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C27B0"
+    android:background="#484349"
     tools:context=".Type">
 
     <Button
         android:id="@+id/cookTypeID"
         android:layout_width="385dp"
-        android:layout_height="290dp"
+        android:layout_height="200dp"
         android:background="#673AB7"
         android:onClick="cookTypeClick"
         android:text="Cook"
@@ -18,14 +18,15 @@
         app:iconTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="0.726" />
 
     <Button
         android:id="@+id/clientTypeID"
         android:layout_width="387dp"
-        android:layout_height="279dp"
+        android:layout_height="200dp"
         android:background="#673AB7"
         android:onClick="clientTypeClick"
         android:text="Client"
@@ -35,14 +36,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.303" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select User Type"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
