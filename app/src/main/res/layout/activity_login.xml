@@ -12,7 +12,7 @@
         android:layout_width="351dp"
         android:layout_height="45dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Email/User Name"
         android:inputType="textEmailAddress"
         android:textAlignment="textStart"
         android:textColor="#000000"

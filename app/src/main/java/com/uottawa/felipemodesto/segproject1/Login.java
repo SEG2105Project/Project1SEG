@@ -24,10 +24,11 @@ public class Login extends Activity {
     List<Client> clients;
     DatabaseReference databaseCook;
     List<Cook> cooks;
+    DatabaseReference databaseAdmin;
+    List<Admin> admins;
     Button buttonLogin;
     EditText editTextEmail;
     EditText editTextPassword;
-    DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,10 @@ public class Login extends Activity {
         buttonLogin = (Button) findViewById(R.id.loginLoginButtonID);
         clients = new ArrayList<>();
         cooks = new ArrayList<>();
+        admins = new ArrayList<>();
         databaseClient = FirebaseDatabase.getInstance().getReference("clients");
         databaseCook = FirebaseDatabase.getInstance().getReference("cooks");
+        databaseAdmin = FirebaseDatabase.getInstance().getReference("Admin");
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -85,16 +88,28 @@ public class Login extends Activity {
 
             }
         });
+
+        databaseAdmin.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                admins.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    Admin admin = postSnapshot.getValue(Admin.class);
+                    admins.add(admin);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
+            }
+        });
     }
     protected void checkExistingUser(){
 
         String Email = editTextEmail.getText().toString().trim();
         String Password = editTextPassword.getText().toString().trim();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Entered Password").setValue(Password);
-        mDatabase.child("Entered Email").setValue(Email);
-        mDatabase.child("DB Password").setValue(clients.get(0).password.trim());
-        mDatabase.child("DB Email").setValue(clients.get(0).email.trim());
         boolean loginFound = false;
         for (int i=0; i<clients.size(); i++){
             if (clients.get(i).email.trim().equals(Email) && clients.get(i).password.trim().equals(Password)){
@@ -106,6 +121,13 @@ public class Login extends Activity {
         for (int i=0; i<cooks.size(); i++){
             if (cooks.get(i).email.trim().equals(Email) && cooks.get(i).password.trim().equals(Password)){
                 Intent j = new Intent(this, welcomeCook.class);
+                startActivity(j);
+                loginFound = true;
+            };
+        }
+        for (int i=0; i<admins.size(); i++){
+            if (admins.get(i).userName.trim().equals(Email) && admins.get(i).password.trim().equals(Password)){
+                Intent j = new Intent(this, welcomeAdmin.class);
                 startActivity(j);
                 loginFound = true;
             };
