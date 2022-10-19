@@ -28,6 +28,8 @@
         android:layout_height="wrap_content"
         android:onClick="clientLogOffClick"
         android:text="Log Off"
+        android:background="#673AB7"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.458"
