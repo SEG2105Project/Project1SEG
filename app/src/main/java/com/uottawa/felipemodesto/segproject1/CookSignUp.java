@@ -61,6 +61,7 @@ public class CookSignUp extends AppCompatActivity{
     Button btn2;
     ImageView imageView;
     int SELECT_IMAGE_CODE=1;
+    boolean valid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +101,6 @@ public class CookSignUp extends AppCompatActivity{
                 addCook();
             }
         });
-
-
-
     }
 
     @Override
@@ -114,6 +112,7 @@ public class CookSignUp extends AppCompatActivity{
             try{
                 Uri uri = data.getData();
                 btn2.setText("Image Uploaded");
+                valid = true;
             }
             catch (Exception e){
                 btn2.setText("Image not Uploaded, try again");
@@ -130,7 +129,7 @@ public class CookSignUp extends AppCompatActivity{
         String address = editTextAddress2.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(description)){
+        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(description) && valid == true){
             String id = databaseCook.push().getKey();
             String voidCheque ="test";
             Cook cook = new Cook(id, firstName, lastName, email, password, address, description, voidCheque);
