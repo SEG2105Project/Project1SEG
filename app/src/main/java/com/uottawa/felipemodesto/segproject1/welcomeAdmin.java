@@ -13,8 +13,11 @@ public class welcomeAdmin extends Activity {
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.adminLogOffID:LogOffID:
+            case R.id.adminLogOffID:
                 adminLogOffClick(v);
+                break;
+            case R.id.complaintsButton:
+                complaintsButtonClick(v);
                 break;
         }
     }
@@ -23,4 +26,10 @@ public class welcomeAdmin extends Activity {
         Intent i = new Intent(this, Home.class);
         startActivity(i);
     }
+
+    public void complaintsButtonClick (View v) {
+        //Intent i = new Intent(this, complaints.class);
+        //startActivity(i);
+    }
+
 }
