@@ -31,14 +31,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonUpdateProduct"
+            android:id="@+id/buttonDismissComplaint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Dismiss" />
 
         <Button
-            android:id="@+id/buttonDeleteProduct"
+            android:id="@+id/buttonSuspendCook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

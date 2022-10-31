@@ -16,8 +16,8 @@ public class welcomeAdmin extends Activity {
             case R.id.adminLogOffID:
                 adminLogOffClick(v);
                 break;
-            case R.id.complaintsButton:
-                complaintsButtonClick(v);
+            case R.id.complaintsButtonID:
+                complaintButtonClick(v);
                 break;
         }
     }
@@ -27,9 +27,9 @@ public class welcomeAdmin extends Activity {
         startActivity(i);
     }
 
-    public void complaintsButtonClick (View v) {
-        //Intent i = new Intent(this, complaints.class);
-        //startActivity(i);
+    public void complaintButtonClick (View v) {
+        Intent i = new Intent(this, handleComplaints.class);
+        startActivity(i);
     }
 
 }
