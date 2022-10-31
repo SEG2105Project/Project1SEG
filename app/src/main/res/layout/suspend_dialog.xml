@@ -10,7 +10,7 @@
         android:id="@+id/editSuspensionTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter length of suspension"
+        android:hint="Enter length of Suspension in Days"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -22,7 +22,7 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=" Note: Enter &quot;PERMANENT&quot; for a permanent suspension"
+        android:text=" Note: Enter -666 for a permanent suspension"
         android:textColor="#FFFFFF" />
 
     <LinearLayout

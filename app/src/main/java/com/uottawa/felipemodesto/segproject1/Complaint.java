@@ -23,21 +23,24 @@ public class Complaint {
     public String description;
     public String cookFirstName;
     public String cookLastName;
-    public String cookEmail;
-    public Complaint(String id, String description, String cookFirstName, String cookLastName, String cookEmail) {
+    public String cookId;
+    public Complaint(String id, String description, String cookFirstName, String cookLastName, String cookId) {
 
-        if (id == null || description == null || cookFirstName == null || cookLastName == null || cookEmail == null)
+        if (id == null || description == null || cookFirstName == null || cookLastName == null || cookId == null)
             throw new IllegalArgumentException( "null value" );
         this.id = id;
         this.description = description;
         this.cookFirstName = cookFirstName;
         this.cookLastName = cookLastName;
-        this.cookEmail = cookEmail;
+        this.cookId = cookId;
     }
     public Complaint() {
     }
     public String getId() {
         return id;
+    }
+    public String getCookId() {
+        return cookId;
     }
     public String getDescription() {
         return description;
@@ -47,8 +50,5 @@ public class Complaint {
     }
     public String getCookLastName() {
         return cookLastName;
-    }
-    public String getCookName() {
-        return cookFirstName;
     }
 }

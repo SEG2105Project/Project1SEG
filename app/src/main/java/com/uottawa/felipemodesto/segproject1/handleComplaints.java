@@ -43,7 +43,7 @@ public class handleComplaints extends Activity{
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showUpdateDeleteDialog(complaint.getId(), complaint.getCookName());
+                showUpdateDeleteDialog(complaint.getId(), complaint.getCookId());
                 return true;
             }
         });
@@ -97,10 +97,14 @@ public class handleComplaints extends Activity{
         });
 
         buttonSuspendCook.setOnClickListener(new View.OnClickListener() {
-            String daysOfSuspension = editTimeOfSuspension.getText().toString().trim();
             public void onClick(View view) {
-                suspendCook(cookId, daysOfSuspension);
-                b.dismiss();
+                String daysOfSuspension = editTimeOfSuspension.getText().toString().trim();
+                if (!TextUtils.isEmpty(daysOfSuspension)) {
+                    suspendCook(cookId, daysOfSuspension, complaintId);
+                    b.dismiss();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please Specify Days of Suspension", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -112,10 +116,11 @@ public class handleComplaints extends Activity{
 
         Toast.makeText(getApplicationContext(), "Complaint Dismissed", Toast.LENGTH_LONG).show();
     }
-    private void suspendCook(String cookId, String daysOfSuspension) {
-        Task<Void> dR = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("suspended").setValue(true);
-        Task<Void> dR2 = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("daysOfSuspension").setValue(daysOfSuspension);
-
-        Toast.makeText(getApplicationContext(), "Complaint Dismissed", Toast.LENGTH_LONG).show();
+    private void suspendCook(String cookId, String daysOfSuspension, String complaintId) {
+            Task<Void> dR = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("suspended").setValue(true);
+            Task<Void> dR2 = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("daysOfSuspension").setValue(Integer.valueOf(daysOfSuspension));
+            DatabaseReference dR3 = FirebaseDatabase.getInstance().getReference("complaint").child(complaintId);
+            dR3.removeValue();
+            Toast.makeText(getApplicationContext(), "Cook Suspended", Toast.LENGTH_LONG).show();
     }
 }
