@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 public class ClientSignUp extends Activity{
 
+    private List<String> clientSignUpInfo = new ArrayList<String>();
+
     EditText editTextLastName;
     EditText editTextFirstName;
     EditText editTextEmail;
@@ -120,4 +122,38 @@ public class ClientSignUp extends Activity{
 
     }
 
+    public void testAddClient(String firstName, String lastName, String email, String password, String address, String creditCardNumber) {
+        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(creditCardNumber)){
+            clientSignUpInfo.add(firstName);
+            clientSignUpInfo.add(lastName);
+            clientSignUpInfo.add(email);
+            clientSignUpInfo.add(password);
+            clientSignUpInfo.add(address);
+            clientSignUpInfo.add(creditCardNumber);
+
+            String id = databaseClient.push().getKey();
+
+            Client client = new Client(id, firstName, lastName, email, password, address, creditCardNumber);
+
+            databaseClient.child(id).setValue(client);
+
+            editTextFirstName.setText("");
+            editTextLastName.setText("");
+            editTextEmail.setText("");
+            editTextPassword.setText("");
+            editTextAddress.setText("");
+            editTextCreditCard.setText("");
+
+            Toast.makeText(this, "Sign up Successful", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+        }
+        else {
+            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public List<String> getTestClientSignUp() {
+        return clientSignUpInfo;
+    }
 }
