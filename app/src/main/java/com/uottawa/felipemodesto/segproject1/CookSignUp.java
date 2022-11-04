@@ -1,5 +1,6 @@
 package com.uottawa.felipemodesto.segproject1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,7 +44,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CookSignUp extends AppCompatActivity{
+public class CookSignUp extends Activity {
+
+    private List<String> cookSignUpInfo = new ArrayList<String>();
+    private boolean voidChequeCheck;
 
     EditText editTextLastName2;
     EditText editTextFirstName2;
@@ -154,5 +158,35 @@ public class CookSignUp extends AppCompatActivity{
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public void addCookTestValues(String firstName, String lastName, String email, String password, String address, String description, boolean voidChequeAdded) {
+        cookSignUpInfo.add(firstName);
+        cookSignUpInfo.add(lastName);
+        cookSignUpInfo.add(email);
+        cookSignUpInfo.add(password);
+        cookSignUpInfo.add(address);
+        cookSignUpInfo.add(description);
+        voidChequeCheck = voidChequeAdded;
+    }
+
+    public boolean testCheckCook(List<String> list) {
+        String firstName = list.get(0);
+        String lastName = list.get(1);
+        String email = list.get(2);
+        String password = list.get(3);
+        String address = list.get(4);
+        String description = list.get(5);
+
+        if((firstName == null || firstName == "") || (lastName == null || lastName == "") || (address == null || address == "") || (email == null || email == "") || (password == null || password == "") || (description == null || description == "") || (voidChequeCheck == false)){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public List<String> getTestCookSignUp() {
+        return cookSignUpInfo;
     }
 }

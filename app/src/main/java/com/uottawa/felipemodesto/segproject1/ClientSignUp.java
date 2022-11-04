@@ -122,7 +122,7 @@ public class ClientSignUp extends Activity{
 
     }
 
-    public void addTestValues(String firstName, String lastName, String email, String password, String address, String creditCardNumber) {
+    public void addClientTestValues(String firstName, String lastName, String email, String password, String address, String creditCardNumber) {
         clientSignUpInfo.add(firstName);
         clientSignUpInfo.add(lastName);
         clientSignUpInfo.add(email);
@@ -132,18 +132,18 @@ public class ClientSignUp extends Activity{
     }
 
     public boolean testCheckClient(List<String> list) {
-        String firstName = clientSignUpInfo.get(0);
-        String lastName = clientSignUpInfo.get(1);
-        String email = clientSignUpInfo.get(2);
-        String password = clientSignUpInfo.get(3);
-        String address = clientSignUpInfo.get(4);
-        String creditCardNumber = clientSignUpInfo.get(5);
+        String firstName = list.get(0);
+        String lastName = list.get(1);
+        String email = list.get(2);
+        String password = list.get(3);
+        String address = list.get(4);
+        String creditCardNumber = list.get(5);
 
-        if(!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(address) && !TextUtils.isEmpty(creditCardNumber)){
-            return true;
+        if((firstName == null || firstName == "") || (lastName == null || lastName == "") || (address == null || address == "") || (email == null || email == "") || (password == null || password == "") || (creditCardNumber == null || creditCardNumber == "")){
+            return false;
         }
         else {
-            return false;
+            return true;
         }
     }
 
