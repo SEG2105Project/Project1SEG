@@ -9,8 +9,8 @@ public class ClientSignUpTest extends TestCase {
     @Test
     public void shouldCreateClient1() {
         ClientSignUp client1 = new ClientSignUp();
-        client1.testAddClient("ted", "san", "tsan@gmail.com", "password", "19 crescent", "1234 5678 2563 9002");
+        client1.addTestValues("ted", "san", "tsan@gmail.com", "password", "19 crescent", "1234 5678 2563 9002");
         Assert.assertFalse(client1.getTestClientSignUp().isEmpty());
-        Assert.assertEquals(1, client1.getTestClientSignUp().size());
+        Assert.assertTrue(client1.testCheckClient(client1.getTestClientSignUp()));
     }
 }
