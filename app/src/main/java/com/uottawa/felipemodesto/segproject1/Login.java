@@ -121,12 +121,10 @@ public class Login extends Activity {
         for (int i=0; i<cooks.size(); i++){
             if (cooks.get(i).email.trim().equals(Email) && cooks.get(i).password.trim().equals(Password)){
                 if (cooks.get(i).suspended == true){
-                    if (cooks.get(i).daysOfSuspension == -666){
-                        Toast.makeText(this, "This account has been permanently suspended", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "This account has been suspended for "+ cooks.get(i).daysOfSuspension +" Days", Toast.LENGTH_LONG).show();
-                    }
                     loginFound = true;
+                    Intent j = new Intent(this, cookSuspended.class);
+                    j.putExtra("days", cooks.get(i).daysOfSuspension);
+                    startActivity(j);
                 } else{
                     Intent j = new Intent(this, welcomeCook.class);
                     startActivity(j);
