@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.AutoCompleteTextView;
 
 import androidx.annotation.NonNull;
 
@@ -120,13 +121,16 @@ public class Login extends Activity {
         }
         for (int i=0; i<cooks.size(); i++){
             if (cooks.get(i).email.trim().equals(Email) && cooks.get(i).password.trim().equals(Password)){
-                if (cooks.get(i).suspended == true){
+                if (cooks.get(i).suspended != null && cooks.get(i).suspended == true){
                     loginFound = true;
                     Intent j = new Intent(this, cookSuspended.class);
                     j.putExtra("days", cooks.get(i).daysOfSuspension);
                     startActivity(j);
                 } else{
                     Intent j = new Intent(this, welcomeCook.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("cookId", cooks.get(i).id.trim());
+                    j.putExtras(bundle);
                     startActivity(j);
                     loginFound = true;
                 }

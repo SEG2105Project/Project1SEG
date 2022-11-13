@@ -12,10 +12,6 @@ import com.uottawa.felipemodesto.segproject1.R;
 
 import java.util.List;
 
-/**
- * Created by Miguel Garzón on 2017-05-09.
- */
-
 public class ComplaintList extends ArrayAdapter<Complaint> {
     private Activity context;
     List<Complaint> complaints;

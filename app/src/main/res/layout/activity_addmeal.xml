@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_addmeal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddMeal">
+
+
+    <EditText
+        android:id="@+id/editMealName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Meal Name" />
+
+
+    <EditText
+        android:id="@+id/editMealType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editMealName"
+        android:layout_marginTop="4dp"
+        android:hint="Enter Meal Type" />
+
+    <EditText
+        android:id="@+id/editCuisineType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editMealType"
+        android:layout_marginTop="1dp"
+        android:hint="Enter Cuisine Type" />
+    <EditText
+        android:id="@+id/editListOfIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editCuisineType"
+        android:layout_marginTop="1dp"
+        android:hint="Enter List Of Ingredients (Ex: butter, milk, eggs)" />
+    <EditText
+        android:id="@+id/editAllergens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editListOfIngredients"
+        android:layout_marginTop="1dp"
+        android:hint="Enter Allergens" />
+
+    <EditText
+        android:id="@+id/editPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editAllergens"
+        android:layout_marginTop="1dp"
+        android:hint="Enter Price (in $)" />
+
+    <EditText
+        android:id="@+id/editMealDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPrice"
+        android:layout_marginTop="1dp"
+        android:hint="Enter Description" />
+
+
+    <Button
+        android:id="@+id/addMealButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="111dp"
+        android:layout_weight="1"
+        android:text="Add to Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addMealButton"
+        android:layout_marginTop="5dp"
+        android:text="Meals"
+        android:textAlignment="center" />
+
+    <ListView
+        android:id="@+id/listViewMeals"
+        android:layout_width="match_parent"
+        android:layout_height="457dp"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="6dp"></ListView>
+
+</RelativeLayout>
