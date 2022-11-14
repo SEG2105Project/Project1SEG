@@ -17,6 +17,7 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
     List<Complaint> complaints;
 
     public ComplaintList(Activity context, List<Complaint> complaints) {
+        //List of complaints
         super(context, R.layout.layout_complaint_list, complaints);
         this.context = context;
         this.complaints = complaints;

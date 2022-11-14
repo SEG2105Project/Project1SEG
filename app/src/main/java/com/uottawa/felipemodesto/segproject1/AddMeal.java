@@ -137,6 +137,7 @@ public class AddMeal extends Activity {
         Toast.makeText(getApplicationContext(), "Meal is Now Offered", Toast.LENGTH_LONG).show();
     }
     private void deleteMealFromMenu(String mealId) {
+        //method to delete meal from menu
         DatabaseReference dR = databaseMenu.child(mealId);
 
         dR.removeValue();
@@ -144,6 +145,7 @@ public class AddMeal extends Activity {
         Toast.makeText(getApplicationContext(), "Meal Removed From Menu", Toast.LENGTH_LONG).show();
     }
     private void addMeal() {
+        //add a meal to menu
         String mealName = editMealName.getText().toString().trim();
         String mealType = editMealType.getText().toString().trim();
         String cuisineType = editCuisineType.getText().toString().trim();
