@@ -30,11 +30,13 @@ public class Home extends Activity {
     }
 
     public void loginClick (View v){
+        //code for login button
         Intent i = new Intent(this, Login.class);
         startActivity(i);
     }
 
     public void signUpClick (View v) {
+        //code for signup button
         Intent i = new Intent(this, Type.class);
         startActivity(i);
     }

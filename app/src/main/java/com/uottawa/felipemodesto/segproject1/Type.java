@@ -14,6 +14,7 @@ public class Type extends Activity {
     }
 
     public void onClick(View v) {
+        //There are 2 types, either cook or client
         switch (v.getId()) {
             case R.id.clientTypeID:
                 clientTypeClick(v);

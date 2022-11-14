@@ -19,6 +19,7 @@ import java.util.List;
 
 
 public class Complaint {
+    //complaint info
     public String id;
     public String description;
     public String cookFirstName;

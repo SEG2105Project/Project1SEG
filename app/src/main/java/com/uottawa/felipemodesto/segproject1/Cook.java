@@ -13,7 +13,7 @@ public class Cook {
     public Boolean suspended;
 
     public Cook( String firstName, String lastName, String email, String password, String Address, String description, String voidCheque) {
-
+        //cook info
         if ( firstName == null || lastName == null || email == null || password == null || Address == null || description == null || voidCheque == null)
             throw new IllegalArgumentException( "null value" );
 
