@@ -12,21 +12,6 @@ public class Meal {
     public String id;
     public boolean offered;
 
-    public Meal(String mealName, String mealType, String cuisineType, String listOfIngredients, String Allergens, String Price, String mealDescription, String cookId, boolean offered) {
-
-        if ( mealName == null || mealType == null || cuisineType == null || listOfIngredients == null || Allergens == null || Price == null || mealDescription == null || cookId == null)
-            throw new IllegalArgumentException( "null value" );
-
-        this.mealName = mealName;
-        this.mealType = mealType;
-        this.cuisineType = cuisineType;
-        this.listOfIngredients = listOfIngredients;
-        this.Allergens = Allergens;
-        this.price = Price;
-        this.mealDescription = mealDescription;
-        this.cookId = cookId;
-        this.offered = offered;
-    }
     public Meal(){};
     public Meal(String id,  String mealName, String mealType, String cuisineType, String listOfIngredients, String Allergens, String Price, String mealDescription, String cookId, boolean offered) {
 

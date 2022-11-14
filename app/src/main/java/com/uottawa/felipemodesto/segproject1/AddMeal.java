@@ -155,7 +155,7 @@ public class AddMeal extends Activity {
         if(!TextUtils.isEmpty(mealName) && !TextUtils.isEmpty(mealType) && !TextUtils.isEmpty(cuisineType) && !TextUtils.isEmpty(listOfIngredients) && !TextUtils.isEmpty(Allergens) && !TextUtils.isEmpty(Price) && !TextUtils.isEmpty(MealDescription)){
             String id = databaseMenu.push().getKey();
 
-            Meal meal = new Meal(id, mealName, mealType, cuisineType, listOfIngredients, Allergens, Price, MealDescription, false);
+            Meal meal = new Meal(id, mealName, mealType, cuisineType, listOfIngredients, Allergens, Price, MealDescription, cookId, false);
 
             databaseMenu.child(id).setValue(meal);
 
