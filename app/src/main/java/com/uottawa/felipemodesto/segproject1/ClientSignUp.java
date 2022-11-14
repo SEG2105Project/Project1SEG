@@ -88,6 +88,7 @@ public class ClientSignUp extends Activity{
     }
 
     private void addClient() {
+        //Code to add client to database
         String firstName = editTextFirstName.getText().toString().trim();
         String lastName = editTextLastName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
