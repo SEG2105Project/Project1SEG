@@ -26,7 +26,6 @@ public class Tests {
     }
 
     @Test
-
     public void cookSignUpTest2() {
         CookSignUp secondcook = new CookSignUp();
         secondcook.addCookTestValues("jon", "colsan", "jcolsan@gmail.com", "password1234", "42 great road", "i cook good food", false);
