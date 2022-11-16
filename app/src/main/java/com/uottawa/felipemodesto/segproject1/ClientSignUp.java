@@ -148,6 +148,28 @@ public class ClientSignUp extends Activity{
         }
     }
 
+    public void registerInfo(List<String> list) {
+        String firstName = list.get(0);
+        String lastName = list.get(1);
+        String email = list.get(2);
+        String password = list.get(3);
+        String address = list.get(4);
+        String creditCardNumber = list.get(5);
+
+        String id = databaseClient.push().getKey();
+
+        Client client = new Client(id, firstName, lastName, email, password, address, creditCardNumber);
+
+        databaseClient.child(id).setValue(client);
+
+        editTextFirstName.setText("");
+        editTextLastName.setText("");
+        editTextEmail.setText("");
+        editTextPassword.setText("");
+        editTextAddress.setText("");
+        editTextCreditCard.setText("");
+    }
+
     public List<String> getTestClientSignUp() {
         return clientSignUpInfo;
     }

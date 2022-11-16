@@ -148,4 +148,17 @@ public class Login extends Activity {
         }
 
     }
+
+    public boolean testCheckLogin(List<String> list) {
+        String Email = list.get(2);
+        String Password = list.get(3);
+        boolean loginFound = false;
+
+        for (int i=0; i<clients.size(); i++){
+            if (clients.get(i).email.trim().equals(Email) && clients.get(i).password.trim().equals(Password)){
+                loginFound = true;
+            };
+        }
+        return loginFound;
+    }
 }

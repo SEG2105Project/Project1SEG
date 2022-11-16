@@ -12,6 +12,18 @@ public class Tests {
     }
 
     @Test
+    public void clientLoginTest1() {
+        ClientSignUp client1 = new ClientSignUp();
+        Login testLogin1 = new Login();
+        client1.addClientTestValues("ted", "san", "tsan@gmail.com", "password", "19 crescent drive", "1234 5678 2563 9002");
+        boolean check = client1.testCheckClient(client1.getTestClientSignUp());
+        if (check) {
+            client1.registerInfo(client1.getTestClientSignUp());
+            Assert.assertTrue(testLogin1.testCheckLogin(client1.getTestClientSignUp()));
+        }
+    }
+
+    @Test
     public void clientSignUpTest2() {
         ClientSignUp secondclient = new ClientSignUp();
         secondclient.addClientTestValues(null, "san", "tsan@gmail.com", "", "19 crescent drive", "1234 5678 2563 9002");
