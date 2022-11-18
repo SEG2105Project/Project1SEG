@@ -15,11 +15,19 @@
         android:textAlignment="center"
         />
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="1dp"
+        android:text="              (Long Press Meal To Remove from Offered List)" />
+
     <ListView
         android:id="@+id/listOfferedMeals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView">
+        android:layout_below="@+id/textView11">
 
     </ListView>
 

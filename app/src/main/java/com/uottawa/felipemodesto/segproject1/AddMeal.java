@@ -112,7 +112,7 @@ public class AddMeal extends Activity {
         buttonAddMealToOfferedList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addMealToOfferedList(mealId);
+                addMealToOfferedList(mealId, offered);
                 b.dismiss();
             }
         });
@@ -131,10 +131,14 @@ public class AddMeal extends Activity {
         });
     }
 
-    private void addMealToOfferedList(String mealId) {
-        Task<Void> dR = databaseMenu.child(mealId).child("offered").setValue(true);
+    private void addMealToOfferedList(String mealId, boolean offered) {
+        if (offered){
+            Toast.makeText(getApplicationContext(), "This Meal is Already Offered", Toast.LENGTH_LONG).show();
+        } else{
+            Task<Void> dR = databaseMenu.child(mealId).child("offered").setValue(true);
+            Toast.makeText(getApplicationContext(), "Meal is Now Offered", Toast.LENGTH_LONG).show();
+        }
 
-        Toast.makeText(getApplicationContext(), "Meal is Now Offered", Toast.LENGTH_LONG).show();
     }
     private void deleteMealFromMenu(String mealId) {
         //method to delete meal from menu
