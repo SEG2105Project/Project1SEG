@@ -113,14 +113,14 @@ public class Login extends Activity {
         String Password = editTextPassword.getText().toString().trim();
         boolean loginFound = false;
         for (int i=0; i<clients.size(); i++){
-            if (clients.get(i).email.trim().equals(Email) && clients.get(i).password.trim().equals(Password)){
+            if (clients.get(i).email != null && clients.get(i).password != null &&  clients.get(i).email.trim().equals(Email) && clients.get(i).password.trim().equals(Password)){
                 Intent j = new Intent(this, welcomeClient.class);
                 startActivity(j);
                 loginFound = true;
             };
         }
         for (int i=0; i<cooks.size(); i++){
-            if (cooks.get(i).email.trim().equals(Email) && cooks.get(i).password.trim().equals(Password)){
+            if (cooks.get(i).email != null && cooks.get(i).password != null && cooks.get(i).email.trim().equals(Email) && cooks.get(i).password.trim().equals(Password)){
                 if (cooks.get(i).suspended != null && cooks.get(i).suspended == true){
                     loginFound = true;
                     Intent j = new Intent(this, cookSuspended.class);
@@ -137,7 +137,7 @@ public class Login extends Activity {
             };
         }
         for (int i=0; i<admins.size(); i++){
-            if (admins.get(i).userName.trim().equals(Email) && admins.get(i).password.trim().equals(Password)){
+            if (admins.get(i).userName != null && admins.get(i).password != null && admins.get(i).userName.trim().equals(Email) && admins.get(i).password.trim().equals(Password)){
                 Intent j = new Intent(this, welcomeAdmin.class);
                 startActivity(j);
                 loginFound = true;
