@@ -18,6 +18,9 @@ public class Home extends Activity {
         setContentView(R.layout.activity_home);
     }
 
+
+
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.loginID:
