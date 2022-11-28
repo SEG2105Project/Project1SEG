@@ -63,7 +63,7 @@ public class SearchForMeal extends Activity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot postSnapshot2: postSnapshot.getChildren()){
                         Meal meal = postSnapshot2.getValue(Meal.class);
-                        if (cookIsNotSuspended(meal.cookId) && (meal.mealName.contains(MealName) || meal.mealType.contains(MealType) || meal.cuisineType.contains(CuisineType))){
+                        if (meal.cookId!=null && cookIsNotSuspended(meal.cookId) && (meal.mealName.contains(MealName) || meal.mealType.contains(MealType) || meal.cuisineType.contains(CuisineType))){
                             meals.add(meal);
                         }
                     }
@@ -116,15 +116,13 @@ public class SearchForMeal extends Activity {
         onStart();
     }
 
-    public Boolean cookIsNotSuspended(String cookId){
+    public boolean cookIsNotSuspended(String cookId){
         for (int i=0; i<cooks.size(); i++){
-            if (cooks.get(i).suspended != null && cooks.get(i).suspended == true && cooks.get(i).id == cookId ){
+            if (cookId != null && cooks.get(i).suspended != null && cooks.get(i).suspended == true && cooks.get(i).id.equals(cookId)){
                 return false;
-            } else{
-                return true;
             }
         }
-        return null;
+        return true;
     }
 
 }
