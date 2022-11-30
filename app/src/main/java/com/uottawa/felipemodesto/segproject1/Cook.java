@@ -10,6 +10,7 @@ public class Cook {
     public String voidCheque;
     public String id;
     public Integer daysOfSuspension;
+    public Integer rating;
     public Boolean suspended;
 
     public Cook( String firstName, String lastName, String email, String password, String Address, String description, String voidCheque) {
@@ -42,9 +43,13 @@ public class Cook {
         this.id = id;
         this.suspended = false;
         this.daysOfSuspension = 0;
+        this.rating = 0;
     }
 
     public void setSuspension(Boolean suspended){
         this.suspended = suspended;
+    }
+    public void setRating(Integer rating){
+        this.rating = rating;
     }
 }

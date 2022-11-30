@@ -3,12 +3,17 @@ package com.uottawa.felipemodesto.segproject1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +48,14 @@ public class SearchForMeal extends Activity {
         databaseCook = FirebaseDatabase.getInstance().getReference("cooks");
         meals = new ArrayList<>();
         cooks = new ArrayList<>();
+        listViewMeals.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Meal meal = meals.get(i);
+                showCookInfo(meal.cookId);
+                return true;
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -123,6 +136,31 @@ public class SearchForMeal extends Activity {
             }
         }
         return true;
+    }
+
+    private void showCookInfo(String cookId) {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.cookinfo_dialog, null);
+        dialogBuilder.setView(dialogView);
+        final TextView cookFirstName = (TextView) dialogView.findViewById(R.id.textViewCookFirstName);
+        final TextView cookLastName = (TextView) dialogView.findViewById(R.id.textViewCookLastName);
+        final TextView cookDescription = (TextView) dialogView.findViewById(R.id.textViewCookDescription);
+        final TextView cookRating= (TextView) dialogView.findViewById(R.id.textViewCookRating);
+        for (int i=0; i<cooks.size(); i++){
+            if (cooks.get(i).id.equals(cookId)){
+                cookFirstName.setText("\nCook First Name: " +cooks.get(i).firstName);
+                cookLastName.setText("\nCook Last Name: " +cooks.get(i).lastName);
+                cookDescription.setText("\nCook Description: " +cooks.get(i).description);
+                cookRating.setText("\nCook Rating Out of 5: " +cooks.get(i).rating);
+            }
+        }
+
+        dialogBuilder.setTitle("Cook Information");
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
     }
 
 }
