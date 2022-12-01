@@ -24,7 +24,15 @@
             android:id="@+id/textViewCookLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cook First Name:"
+            android:text="Cook Last Name:"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textViewCookAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cook Address:"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
@@ -44,7 +52,36 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/fill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editPickUpTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:hint="Enter Pick Up Time (hh:mm/DD/MM/YYYY)"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/submitPurchaseRequest"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:background="#673AB7"
+        android:onClick="cookLogOffClick"
+        android:text="Submit Purchase Request"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

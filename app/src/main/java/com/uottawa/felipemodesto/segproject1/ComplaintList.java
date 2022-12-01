@@ -28,14 +28,13 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_complaint_list, null, true);
 
-        TextView textViewComplaintId = (TextView) listViewItem.findViewById(R.id.textViewComplaintId);
-        TextView textViewComplaintDescription = (TextView) listViewItem.findViewById(R.id.textViewComplaintDescription);
         TextView textViewComplaintCook = (TextView) listViewItem.findViewById(R.id.textViewComplaintCook);
+        TextView textViewComplaintDescription = (TextView) listViewItem.findViewById(R.id.textViewComplaintDescription);
+
 
         Complaint complaint = complaints.get(position);
-        textViewComplaintId.setText(complaint.getId());
-        textViewComplaintDescription.setText(String.valueOf(complaint.getDescription()));
-        textViewComplaintCook.setText(String.valueOf(complaint.getCookFirstName() + " " +complaint.getCookLastName()));
+        textViewComplaintDescription.setText("Complaint Description: " + String.valueOf(complaint.getDescription()));
+        textViewComplaintCook.setText("Associated Cook: " + complaint.getCookFirstName() + " " +complaint.getCookLastName());
         return listViewItem;
     }
 }

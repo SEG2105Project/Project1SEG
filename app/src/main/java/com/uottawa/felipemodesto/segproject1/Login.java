@@ -115,6 +115,9 @@ public class Login extends Activity {
         for (int i=0; i<clients.size(); i++){
             if (clients.get(i).email != null && clients.get(i).password != null &&  clients.get(i).email.trim().equals(Email) && clients.get(i).password.trim().equals(Password)){
                 Intent j = new Intent(this, welcomeClient.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("clientId", clients.get(i).id.trim());
+                j.putExtras(bundle);
                 startActivity(j);
                 loginFound = true;
             };

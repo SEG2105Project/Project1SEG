@@ -43,7 +43,7 @@ public class handleComplaints extends Activity{
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Complaint complaint = complaints.get(i);
-                showUpdateDeleteDialog(complaint.getId(), complaint.getCookId());
+                showUpdateDeleteDialog(complaint.getId(), complaint.getCookId(), complaint.cookFirstName, complaint.cookLastName);
                 return true;
             }
         });
@@ -73,7 +73,7 @@ public class handleComplaints extends Activity{
             }
         });
     }
-    private void showUpdateDeleteDialog(final String complaintId, String cookId) {
+    private void showUpdateDeleteDialog(final String complaintId, String cookId, String cookFirstName, String cookLastName) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -84,7 +84,7 @@ public class handleComplaints extends Activity{
         final Button buttonDismiss = (Button) dialogView.findViewById(R.id.buttonDismissComplaint);
         final Button buttonSuspendCook = (Button) dialogView.findViewById(R.id.buttonSuspendCook);
 
-        dialogBuilder.setTitle("Complaint Id: "+complaintId);
+        dialogBuilder.setTitle("Cook: "+cookFirstName+ " "+cookLastName);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
@@ -117,10 +117,15 @@ public class handleComplaints extends Activity{
         Toast.makeText(getApplicationContext(), "Complaint Dismissed", Toast.LENGTH_LONG).show();
     }
     private void suspendCook(String cookId, String daysOfSuspension, String complaintId) {
+        try{
             Task<Void> dR = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("suspended").setValue(true);
             Task<Void> dR2 = FirebaseDatabase.getInstance().getReference("cooks").child(cookId).child("daysOfSuspension").setValue(Integer.valueOf(daysOfSuspension));
             DatabaseReference dR3 = FirebaseDatabase.getInstance().getReference("complaint").child(complaintId);
             dR3.removeValue();
             Toast.makeText(getApplicationContext(), "Cook Suspended", Toast.LENGTH_LONG).show();
+        }
+        catch(Exception e) {
+            Toast.makeText(getApplicationContext(), "Ensure Days Of Suspension input is an Integer", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -27,6 +27,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 public class SearchForMeal extends Activity {
     DatabaseReference databaseMenu;
+    DatabaseReference purchaseRequests;
     List<Meal> meals;
     ListView listViewMeals;
     DatabaseReference databaseCook;
@@ -37,12 +38,16 @@ public class SearchForMeal extends Activity {
     String MealName="*****";
     String MealType="*****";
     String CuisineType="*****";
+    String clientId;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchformeal);
+        Bundle bundle = getIntent().getExtras();
+        clientId = bundle.getString("clientId");
         editMealName = (EditText) findViewById(R.id.mealNameInput);
         editMealType = (EditText) findViewById(R.id.mealTypeInput);
         editCuisineType = (EditText) findViewById(R.id.cuisineTypeInput);
+        purchaseRequests = FirebaseDatabase.getInstance().getReference("purchaseRequests");
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menus");
         listViewMeals = findViewById(R.id.mealsList);
         databaseCook = FirebaseDatabase.getInstance().getReference("cooks");
@@ -52,7 +57,7 @@ public class SearchForMeal extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Meal meal = meals.get(i);
-                showCookInfo(meal.cookId);
+                showCookInfo(meal.cookId, meal.id);
                 return true;
             }
         });
@@ -76,7 +81,7 @@ public class SearchForMeal extends Activity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot postSnapshot2: postSnapshot.getChildren()){
                         Meal meal = postSnapshot2.getValue(Meal.class);
-                        if (meal.cookId!=null && cookIsNotSuspended(meal.cookId) && (meal.mealName.contains(MealName) || meal.mealType.contains(MealType) || meal.cuisineType.contains(CuisineType))){
+                        if (meal.cookId!=null && cookIsNotSuspended(meal.cookId) && (meal.mealName.contains(MealName) || meal.mealType.contains(MealType) || meal.cuisineType.contains(CuisineType)) && meal.offered){
                             meals.add(meal);
                         }
                     }
@@ -138,7 +143,7 @@ public class SearchForMeal extends Activity {
         return true;
     }
 
-    private void showCookInfo(String cookId) {
+    private void showCookInfo(String cookId, String mealId) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -146,12 +151,16 @@ public class SearchForMeal extends Activity {
         dialogBuilder.setView(dialogView);
         final TextView cookFirstName = (TextView) dialogView.findViewById(R.id.textViewCookFirstName);
         final TextView cookLastName = (TextView) dialogView.findViewById(R.id.textViewCookLastName);
+        final TextView cookAddress = (TextView) dialogView.findViewById(R.id.textViewCookAddress);
         final TextView cookDescription = (TextView) dialogView.findViewById(R.id.textViewCookDescription);
         final TextView cookRating= (TextView) dialogView.findViewById(R.id.textViewCookRating);
+        final Button submitPurchaseRequest= (Button) dialogView.findViewById(R.id.submitPurchaseRequest);
+        final EditText editPickUpTime = (EditText) dialogView.findViewById(R.id.editPickUpTime);
         for (int i=0; i<cooks.size(); i++){
             if (cooks.get(i).id.equals(cookId)){
                 cookFirstName.setText("\nCook First Name: " +cooks.get(i).firstName);
                 cookLastName.setText("\nCook Last Name: " +cooks.get(i).lastName);
+                cookAddress.setText("\nCook Address: " +cooks.get(i).Address);
                 cookDescription.setText("\nCook Description: " +cooks.get(i).description);
                 cookRating.setText("\nCook Rating Out of 5: " +cooks.get(i).rating);
             }
@@ -160,6 +169,27 @@ public class SearchForMeal extends Activity {
         dialogBuilder.setTitle("Cook Information");
         final AlertDialog b = dialogBuilder.create();
         b.show();
+
+
+        submitPurchaseRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pickUpTime = editPickUpTime.getText().toString().trim();
+                submitPurchaseRequest(cookId, clientId, mealId, pickUpTime);
+                b.dismiss();
+            }
+        });
+    }
+
+    private void submitPurchaseRequest(String cookId, String clientId, String mealId, String pickUpTime){
+        if (pickUpTime.equals("")){
+            Toast.makeText(this, "Please Enter a Pick Up Time", Toast.LENGTH_LONG).show();
+        } else{
+            String id = purchaseRequests.push().getKey();
+            PurchaseRequest purchaseRequest = new PurchaseRequest(id, cookId, clientId, mealId,pickUpTime);
+            purchaseRequests.child(id).setValue(purchaseRequest);
+            Toast.makeText(this, "Purchase Request Sent Successfully", Toast.LENGTH_LONG).show();
+        }
 
     }
 

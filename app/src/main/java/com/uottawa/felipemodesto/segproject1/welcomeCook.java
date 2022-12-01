@@ -26,7 +26,11 @@ public class welcomeCook extends Activity{
                 addMealClick(v);
                 break;
             case R.id.viewOfferedMealsId:
-
+                viewOfferedMealsClick(v);
+                break;
+            case R.id.purchaseRequests:
+                purchaseRequestsClick(v);
+                break;
         }
     }
 
@@ -44,6 +48,14 @@ public class welcomeCook extends Activity{
     }
     public void viewOfferedMealsClick (View v) {
         Intent i = new Intent(this, OfferedMeals.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("cookId", cookId);
+        i.putExtras(bundle);
+        startActivity(i);
+    }
+
+    public void purchaseRequestsClick (View v) {
+        Intent i = new Intent(this, CooksPurchaseRequests.class);
         Bundle bundle = new Bundle();
         bundle.putString("cookId", cookId);
         i.putExtras(bundle);

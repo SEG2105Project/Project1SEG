@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Complaints"
+        android:text="Purchase Requests"
         android:textSize="30dp"
         android:textAlignment="center"
         />
@@ -21,15 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
-        android:layout_marginTop="4dp"
-        android:text="(Long press to Submit Dismiss Complaint or Suspend Cook)"
+        android:layout_marginTop="13dp"
+        android:text="(Long press to Submit Complaint or Rating)"
         android:textAlignment="center" />
 
     <ListView
-        android:id="@+id/listViewComplaints"
+        android:id="@+id/listViewPurchaseRequests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2">
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="21dp">
 
     </ListView>
 

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Offered Meals"
+        android:textSize="30dp"
         android:textAlignment="center"
         />
 
@@ -21,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_marginTop="1dp"
-        android:text="              (Long Press Meal To Remove from Offered List)" />
+        android:textAlignment="center"
+        android:text="(Long Press Meal To Remove from Offered List)" />
 
     <ListView
         android:id="@+id/listOfferedMeals"
