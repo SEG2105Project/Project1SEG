@@ -19,10 +19,24 @@ permissions:
 jobs:
   build:
 
-    runs-on: ${{matrix.os}}
+    runs-on: ${matrix.os}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, masOS-12]
+        os:
+          - name: macOS
+            matrix: macos
+            runs-on:
+              arm: [m1]
+              intel: [macos-latest]
+          - name: Ubuntu
+            matrix: ubuntu
+            runs-on:
+              arm: [Linux, ARM64]
+              intel: [ubuntu-latest]
+          - name: Windows
+            matrix: windows
+            runs-on:
+              intel: [windows-latest]
 
     steps:
     - uses: actions/checkout@v3
@@ -35,22 +49,4 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-    - name: ARM runner
-      uses: pguyot/arm-runner-action@v2.5.2
-      id: build_image
-      with:
-        base_image: raspios_lite:2022-04-04
-        commands: |
-            commands to build image
-    - name: Compress the release image
-      if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
-      run: |
-        mv ${{ steps.build_image.outputs.image }} my-release-image.img
-        xz -0 -T 0 -v my-release-image.img
-    - name: Upload release image
-      uses: actions/upload-artifact@v2
-      if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
-      with:
-        name: Release image
-        path: my-release-image.img.xz
 
