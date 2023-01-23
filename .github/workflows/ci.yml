@@ -19,7 +19,7 @@ permissions:
 jobs:
   build:
 
-    name: ${{ matrix.os.name }}
+    name: ${{ matrix.os.name }} ${{ matrix.arch.name }}
     runs-on: ${{ matrix.os.runs-on[matrix.arch.matrix] }}
     strategy:
       fail-fast: false
@@ -39,6 +39,11 @@ jobs:
             matrix: windows
             runs-on:
               intel: [windows-latest]
+        arch:
+          - name: ARM
+            matrix: arm
+          - name: Intel
+            matrix: intel
 
     steps:
     - uses: actions/checkout@v3
