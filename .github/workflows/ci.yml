@@ -19,8 +19,10 @@ permissions:
 jobs:
   build:
 
-    runs-on: ${matrix.os}
+    name: ${{ matrix.os.name }}
+    runs-on: ${{ matrix.os.runs-on[matrix.arch.matrix] }}
     strategy:
+      fail-fast: false
       matrix:
         os:
           - name: macOS
