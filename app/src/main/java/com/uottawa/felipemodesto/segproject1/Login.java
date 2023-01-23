@@ -151,4 +151,7 @@ public class Login extends Activity {
         }
 
     }
+
+    public void loginLoginButtonClick(View view) {
+    }
 }
