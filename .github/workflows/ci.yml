@@ -19,31 +19,10 @@ permissions:
 jobs:
   build:
 
-    name: ${{ matrix.os.name }} ${{ matrix.arch.name }}
-    runs-on: ${{ matrix.os.runs-on[matrix.arch.matrix] }}
+    runs-on: ${{matrix.os}}
     strategy:
-      fail-fast: false
       matrix:
-        os:
-          - name: macOS
-            matrix: macos
-            runs-on:
-              arm: [m1]
-              intel: [macos-latest]
-          - name: Ubuntu
-            matrix: ubuntu
-            runs-on:
-              arm: [Linux, ARM64]
-              intel: [ubuntu-latest]
-          - name: Windows
-            matrix: windows
-            runs-on:
-              intel: [windows-latest]
-        arch:
-          - name: ARM
-            matrix: arm
-          - name: Intel
-            matrix: intel
+        os: [ubuntu-latest, windows-latest, masOS-12]
 
     steps:
     - uses: actions/checkout@v3
@@ -56,4 +35,3 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-
