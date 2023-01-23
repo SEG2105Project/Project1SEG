@@ -37,4 +37,7 @@ jobs:
         arguments: build
     - name: ARM runner
       uses: pguyot/arm-runner-action@v2.5.2
+      with:
+        commands: |
+            commands to run tests
 
