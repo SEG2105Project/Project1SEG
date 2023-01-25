@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, buildjet-4vcpu-ubuntu-2204-arm]
+        os: [ubuntu-latest, windows-latest, buildjet-2vcpu-ubuntu-2204-arm]
 
     steps:
     - uses: actions/checkout@v3
@@ -31,8 +31,6 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: setup android sdk for self hosted runner
-      uses: amyu/setup-android@v2.1
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
